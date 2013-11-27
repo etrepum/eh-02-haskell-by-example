@@ -1,0 +1,81 @@
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+}
+
+div { font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif; font-weight: normal; }
+
+section h1 { margin-bottom: 30px; font-size: 3.14em; }
+section.small-title h1 { font-size: 2.5em; }
+
+ul { display: block; margin-left: 1em; }
+
+dl dt { text-align: left; font-weight: bold; }
+dl dd { text-align: left; margin-left: 1.5em; }
+.syntax pre { box-shadow: none; font-size: 1.2em; }
+img { max-height: 80%; }
+
+section pre { box-shadow: none; }
+section pre code { background: inherit; color: inherit; max-height: inherit; font-size: 200%; line-height: 125%; }
+section.small-code pre code { font-size: 0.9em; }
+section.medium-code pre code { font-size: 1.35em; box-shadow: none; }
+section.big-code pre code { font-size: 1.8em; box-shadow: none; }
+
+#concurrency-table { width: 100%; color: #666; }
+#concurrency-table .num { text-align: right; }
+#concurrency-table .name { padding-left: 1em; }
+#concurrency-table .bar-ctr { height: 0; z-index: -1}
+#concurrency-table .bar { height: 1.2em; background-color: #ccc; z-index: -1; }
+#concurrency-table .haskell { color: #66f; }
+#concurrency-table .haskell .bar { width: 1.99%; }
+#concurrency-table .erlang .bar { width: 4.0625%; }
+#concurrency-table .go .bar { width: 12.5%; }
+#concurrency-table .java-min .bar { width: 100%; }
+#concurrency-table .c-min .bar { width: 100%; }
+#concurrency-table .java .bar { width: 12.5%; background-color: #fcc; }
+#concurrency-table .c .bar { width: 100%; background-color: #fcc; }
+
+section.logos img { border: none; box-shadow: none; max-width: 150px; vertical-align: middle; margin: 1em; }
+
+svg.full { width: 100%; }
+
+.diagram text { text-anchor: middle; alignment-baseline: central; }
+.diagram rect { fill: none; stroke: black; }
+.diagram circle { stroke: rgb(0, 0, 0); }
+.diagram line { stroke: rgb(0, 0, 0); }
+
+#compiler svg { stroke-width: 8px; }
+.diagram .phase ellipse { fill: none; stroke-width: 8px; stroke: #4C7FB9; }
+.diagram .phase.optimize ellipse { fill: #5183BB; }
+.diagram .phase.optimize text { fill: white; }
+.diagram .phase.optimize text.outside { fill: black; }
+.diagram .phase.optimize path { stroke: black; fill: none; }
+.diagram .right-title text { text-anchor: end; font-weight: bold; }
+
+/*
+body > div.reveal {
+  background-image: url(http://bob.ippoli.to/why-haskell-2013/img/Haskell-Logo-Background.svg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+*/
