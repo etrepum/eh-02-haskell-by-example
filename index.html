@@ -107,23 +107,7 @@ January 2014
 </section>
 <section id="in-prefix-form" class="slide level1 big-code small-title">
 <h1>In (prefix) form</h1>
-<style>
-.code-table pre code { padding: 0; }
-</style>
 <table width="100%" class="code-table"><tr><td width="50%">
-<pre class="sourceCode haskell"><code class="sourceCode haskell">λ&gt; <span class="dv">486</span>
-<span class="dv">486</span>
-λ&gt; (<span class="fu">+</span>) <span class="dv">137</span> <span class="dv">349</span>
-<span class="dv">486</span>
-λ&gt; (<span class="fu">-</span>) <span class="dv">1000</span> <span class="dv">334</span>
-<span class="dv">666</span>
-λ&gt; (<span class="fu">-</span>) (<span class="fu">-</span><span class="dv">2</span>) (<span class="fu">-</span><span class="dv">3</span>)
-<span class="dv">1</span>
-λ&gt; (<span class="fu">*</span>) <span class="dv">5</span> <span class="dv">99</span>
-<span class="dv">495</span>
-λ&gt; (<span class="fu">^</span>) <span class="dv">2</span> <span class="dv">16</span>
-<span class="dv">65536</span></code></pre>
-</td><td>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">λ&gt; <span class="fu">-</span><span class="dv">2</span>
 <span class="fu">-</span><span class="dv">2</span>
 λ&gt; <span class="dv">1</span><span class="fu">.</span><span class="dv">1</span>
@@ -136,6 +120,19 @@ January 2014
 <span class="dv">1000</span><span class="fu">.</span><span class="dv">0</span>
 λ&gt; (<span class="fu">**</span>) <span class="dv">36</span> <span class="dv">0</span><span class="fu">.</span><span class="dv">5</span>
 <span class="dv">6</span><span class="fu">.</span><span class="dv">0</span></code></pre>
+</td><td>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">λ&gt; <span class="fu">-</span><span class="dv">2</span>
+<span class="fu">-</span><span class="dv">2</span>
+λ&gt; <span class="dv">1</span><span class="fu">.</span><span class="dv">1</span>
+<span class="dv">1</span><span class="fu">.</span><span class="dv">1</span>
+λ&gt; <span class="dv">10</span> <span class="fu">/</span> <span class="dv">5</span>
+<span class="dv">2</span><span class="fu">.</span><span class="dv">0</span>
+λ&gt; <span class="dv">2</span><span class="fu">.</span><span class="dv">7</span> <span class="fu">+</span> <span class="dv">10</span>
+<span class="dv">12</span><span class="fu">.</span><span class="dv">7</span>
+λ&gt; <span class="dv">0</span><span class="fu">.</span><span class="dv">1</span> <span class="fu">*</span> <span class="dv">1</span><span class="fu">.</span>0e4
+<span class="dv">1000</span><span class="fu">.</span><span class="dv">0</span>
+λ&gt; <span class="dv">36</span> <span class="fu">**</span> <span class="dv">0</span><span class="fu">.</span><span class="dv">5</span>
+<span class="dv">6</span><span class="fu">.</span><span class="dv">0</span></code></pre>
 </td></tr></table>
 
 </section>
@@ -146,20 +143,30 @@ January 2014
 <li>By convention, <code>theyAreWrittenLikeThis</code>.</li>
 <li>A leading underscore implies that it is an unused variable, but this is only used to silence compiler warnings.</li>
 </ul>
+</section>
+<section id="using-let" class="slide level1 big-code small-title">
+<h1>Using let</h1>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">λ&gt; <span class="kw">let</span> x <span class="fu">=</span> <span class="dv">10</span> <span class="kw">in</span> x <span class="fu">*</span> x
 <span class="dv">100</span>
 λ&gt; <span class="kw">let</span> { x <span class="fu">=</span> <span class="dv">10</span>; y <span class="fu">=</span> <span class="dv">2</span> } <span class="kw">in</span> x <span class="fu">*</span> y
 <span class="dv">20</span>
 λ&gt; <span class="kw">let</span> { x <span class="fu">=</span> <span class="dv">2</span> <span class="fu">*</span> y; y <span class="fu">=</span> <span class="dv">40</span> } <span class="kw">in</span> x <span class="fu">*</span> y
 <span class="dv">3200</span>
-λ&gt; <span class="kw">let</span> { x <span class="fu">=</span> undefined; y <span class="fu">=</span> <span class="dv">2</span>} <span class="kw">in</span> y
+λ&gt; <span class="kw">let</span> { x <span class="fu">=</span> undefined; y <span class="fu">=</span> <span class="dv">2</span> } <span class="kw">in</span> y
 <span class="dv">2</span>
 λ&gt; <span class="kw">let</span> { r <span class="fu">=</span> <span class="dv">2</span>; area <span class="fu">=</span> pi <span class="fu">*</span> r <span class="fu">*</span> r } <span class="kw">in</span> area
 <span class="dv">12</span><span class="fu">.</span><span class="dv">566370614359172</span></code></pre>
 </section>
 <section id="calling-functions" class="slide level1 big-code small-title">
 <h1>Calling functions</h1>
-<p>Function application looks like <code>function arg</code>. Function application has the highest precedence, so parentheses are not required around operators.</p>
+<ul>
+<li>Function application looks like <code>function arg</code>.</li>
+<li>No parentheses.</li>
+<li>Function application has the highest precedence (higher than any operator).</li>
+</ul>
+</section>
+<section id="using-functions" class="slide level1 big-code small-title">
+<h1>Using functions</h1>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">λ&gt; even <span class="dv">10</span>
 <span class="dt">True</span>
 λ&gt; negate <span class="dv">4</span>
@@ -171,9 +178,22 @@ January 2014
 λ&gt; <span class="dt">True</span> <span class="fu">&amp;&amp;</span> not (<span class="dt">False</span> <span class="fu">||</span> <span class="dt">True</span>)
 <span class="dt">False</span></code></pre>
 </section>
-<section id="calling-infix-functions" class="slide level1 big-code small-title">
-<h1>Calling `infix` functions</h1>
-<p>Any two argument function can be called in infix form.</p>
+<section id="infix-syntax-sugar" class="slide level1 big-code small-title">
+<h1>`infix` syntax sugar</h1>
+<table width="100%" class="code-table"><tr><td width="50%">
+<pre class="sourceCode haskell"><code class="sourceCode haskell">λ&gt; max <span class="dv">4</span> <span class="dv">5</span>
+<span class="dv">5</span>
+λ&gt; div <span class="dv">10</span> <span class="dv">2</span>
+<span class="dv">5</span>
+λ&gt; lcm <span class="dv">360</span> <span class="dv">13</span>
+<span class="dv">4680</span>
+λ&gt; divMod <span class="dv">360</span> <span class="dv">13</span>
+(<span class="dv">27</span>,<span class="dv">9</span>)
+λ&gt; elem <span class="ch">&#39;a&#39;</span> <span class="st">&quot;apple&quot;</span>
+<span class="dt">True</span>
+λ&gt; elem <span class="dv">4</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]
+<span class="dt">False</span></code></pre>
+</td><td>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">λ&gt; <span class="dv">4</span> <span class="ot">`max`</span> <span class="dv">5</span>
 <span class="dv">5</span>
 λ&gt; <span class="dv">10</span> <span class="ot">`div`</span> <span class="dv">2</span>
@@ -181,14 +201,28 @@ January 2014
 λ&gt; <span class="dv">360</span> <span class="ot">`lcm`</span> <span class="dv">13</span>
 <span class="dv">4680</span>
 λ&gt; <span class="dv">360</span> <span class="ot">`divMod`</span> <span class="dv">13</span>
-(<span class="dv">27</span>,<span class="dv">9</span>)</code></pre>
+(<span class="dv">27</span>,<span class="dv">9</span>)
+λ&gt; <span class="ch">&#39;a&#39;</span> <span class="ot">`elem`</span> <span class="st">&quot;apple&quot;</span>
+<span class="dt">True</span>
+λ&gt; <span class="dv">4</span> <span class="ot">`elem`</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]
+<span class="dt">False</span></code></pre>
+</tr></td></table>
+
+</section>
+<section id="basic-io" class="slide level1 big-code small-title">
+<h1>Basic IO</h1>
+<ul>
+<li><code>print</code>, <code>putStrLn</code>, <code>getLine</code>, …</li>
+</ul>
 </section>
 <section id="what-can-i-do" class="slide level1 small-title">
 <h1>What can I do?</h1>
-<p>Haskell's built-in functionality is all in the Prelude module</p>
-<p>Go to <a href="http://www.haskell.org/hoogle/">http://www.haskell.org/hoogle/</a></p>
-<p>Search for Prelude</p>
-<p>Click on the <code>module Prelude</code> result</p>
+<ul>
+<li>Haskell's built-in functionality is all in the Prelude module</li>
+<li>Go to <a href="http://www.haskell.org/hoogle/">http://www.haskell.org/hoogle/</a></li>
+<li>Search for Prelude</li>
+<li>Click on the <code>module Prelude</code> result</li>
+</ul>
 </section>
     </div>
   </div>

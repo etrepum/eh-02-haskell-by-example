@@ -60,25 +60,7 @@ Want to learn more? Take my [Intro to Haskell] course at<br/>
 
 # In (prefix) form {.big-code .small-title}
 
-<style>
-.code-table pre code { padding: 0; }
-</style>
 <table width="100%" class="code-table"><tr><td width="50%">
-```haskell
-λ> 486
-486
-λ> (+) 137 349
-486
-λ> (-) 1000 334
-666
-λ> (-) (-2) (-3)
-1
-λ> (*) 5 99
-495
-λ> (^) 2 16
-65536
-```
-</td><td>
 ```haskell
 λ> -2
 -2
@@ -93,6 +75,21 @@ Want to learn more? Take my [Intro to Haskell] course at<br/>
 λ> (**) 36 0.5
 6.0
 ```
+</td><td>
+```haskell
+λ> -2
+-2
+λ> 1.1
+1.1
+λ> 10 / 5
+2.0
+λ> 2.7 + 10
+12.7
+λ> 0.1 * 1.0e4
+1000.0
+λ> 36 ** 0.5
+6.0
+```
 </td></tr></table>
 
 # Let there be variables {.big-code .small-title}
@@ -102,6 +99,8 @@ Want to learn more? Take my [Intro to Haskell] course at<br/>
 * A leading underscore implies that it is an unused variable,
   but this is only used to silence compiler warnings.
 
+# Using let {.big-code .small-title}
+
 ```haskell
 λ> let x = 10 in x * x
 100
@@ -109,7 +108,7 @@ Want to learn more? Take my [Intro to Haskell] course at<br/>
 20
 λ> let { x = 2 * y; y = 40 } in x * y
 3200
-λ> let { x = undefined; y = 2} in y
+λ> let { x = undefined; y = 2 } in y
 2
 λ> let { r = 2; area = pi * r * r } in area
 12.566370614359172
@@ -117,9 +116,11 @@ Want to learn more? Take my [Intro to Haskell] course at<br/>
 
 # Calling functions {.big-code .small-title}
 
-Function application looks like `function arg`.
-Function application has the highest precedence,
-so parentheses are not required around operators.
+* Function application looks like `function arg`.
+* No parentheses.
+* Function application has the highest precedence (higher than any operator).
+
+# Using functions {.big-code .small-title}
 
 ```haskell
 λ> even 10
@@ -134,10 +135,24 @@ True
 False
 ```
 
-# Calling &#96;infix&#96; functions {.big-code .small-title}
+# &#96;infix&#96; syntax sugar {.big-code .small-title}
 
-Any two argument function can be called in infix form.
-
+<table width="100%" class="code-table"><tr><td width="50%">
+```haskell
+λ> max 4 5
+5
+λ> div 10 2
+5
+λ> lcm 360 13
+4680
+λ> divMod 360 13
+(27,9)
+λ> elem 'a' "apple"
+True
+λ> elem 4 [1, 2, 3]
+False
+```
+</td><td>
 ```haskell
 λ> 4 `max` 5
 5
@@ -147,18 +162,22 @@ Any two argument function can be called in infix form.
 4680
 λ> 360 `divMod` 13
 (27,9)
+λ> 'a' `elem` "apple"
+True
+λ> 4 `elem` [1, 2, 3]
+False
 ```
+</tr></td></table>
+
+# Basic IO {.big-code .small-title}
+
+* `print`, `putStrLn`, `getLine`, &hellip;
 
 # What can I do? {.small-title}
 
-Haskell's built-in functionality is all in the Prelude module
-
-Go to <http://www.haskell.org/hoogle/>
-
-Search for Prelude
-
-Click on the `module Prelude` result
-
-
+* Haskell's built-in functionality is all in the Prelude module
+* Go to <http://www.haskell.org/hoogle/>
+* Search for Prelude
+* Click on the `module Prelude` result
 
 [Intro to Haskell]: http://www.enginehere.com/courses/intro-to-haskell-etrepum/
