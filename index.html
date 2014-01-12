@@ -9,6 +9,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="reveal.js/css/reveal.min.css"/>
     <style type="text/css">code{white-space: pre;}</style>
+    <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+    </style>
     <link rel="stylesheet" href="css/simple.css"/>
   <link rel="stylesheet" media="print" href="reveal.js/css/print/pdf.css" />
   <!--[if lt IE 9]>
@@ -34,8 +53,142 @@ January 2014
 
 <p>Want to learn more? Take my <a href="http://www.enginehere.com/courses/intro-to-haskell-etrepum/">Intro to Haskell</a> course at<br/> <a href="http://www.enginehere.com/courses/intro-to-haskell-etrepum/">enginehere.com/courses/intro-to-haskell-etrepum</a></p>
 </section>
-<section id="test-slide" class="slide level1">
-<h1>Test slide</h1>
+<section id="getting-haskell" class="slide level1">
+<h1>Getting Haskell</h1>
+<p>(In order of preference)</p>
+<ul>
+<li>Download from <a href="http://www.haskell.org/platform/">haskell.org/platform</a></li>
+<li>Use <a href="https://www.fpcomplete.com/page/project-build">FP Haskell Center</a></li>
+<li>Play with <a href="http://tryhaskell.org/">tryhaskell.org</a></li>
+</ul>
+</section>
+<section id="interactive-haskell" class="slide level1 small-title">
+<h1>Interactive Haskell</h1>
+<ul>
+<li><code>λ&gt;</code> is the interpreter prompt.</li>
+<li>The code to the right of it is what you type.</li>
+<li>Lines that start with <code>--</code> are comments.</li>
+<li>The line below is the result after pressing return.</li>
+</ul>
+</section>
+<section id="haskell-as-a-calculator" class="slide level1 big-code small-title">
+<h1>Haskell as a calculator</h1>
+<style>
+.code-table pre code { padding: 0; }
+</style>
+<table width="100%" class="code-table"><tr><td width="50%">
+<pre class="sourceCode haskell"><code class="sourceCode haskell">λ&gt; <span class="dv">486</span>
+<span class="dv">486</span>
+λ&gt; <span class="dv">137</span> <span class="fu">+</span> <span class="dv">349</span>
+<span class="dv">486</span>
+λ&gt; <span class="dv">1000</span> <span class="fu">-</span> <span class="dv">334</span>
+<span class="dv">666</span>
+λ&gt; <span class="fu">-</span><span class="dv">2</span> <span class="fu">-</span> (<span class="fu">-</span><span class="dv">3</span>)
+<span class="dv">1</span>
+λ&gt; <span class="dv">5</span> <span class="fu">*</span> <span class="dv">99</span>
+<span class="dv">495</span>
+λ&gt; <span class="dv">2</span> <span class="fu">^</span> <span class="dv">16</span>
+<span class="dv">65536</span></code></pre>
+</td><td>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">λ&gt; <span class="fu">-</span><span class="dv">2</span>
+<span class="fu">-</span><span class="dv">2</span>
+λ&gt; <span class="dv">1</span><span class="fu">.</span><span class="dv">1</span>
+<span class="dv">1</span><span class="fu">.</span><span class="dv">1</span>
+λ&gt; <span class="dv">10</span> <span class="fu">/</span> <span class="dv">5</span>
+<span class="dv">2</span><span class="fu">.</span><span class="dv">0</span>
+λ&gt; <span class="dv">2</span><span class="fu">.</span><span class="dv">7</span> <span class="fu">+</span> <span class="dv">10</span>
+<span class="dv">12</span><span class="fu">.</span><span class="dv">7</span>
+λ&gt; <span class="dv">0</span><span class="fu">.</span><span class="dv">1</span> <span class="fu">*</span> <span class="dv">1</span><span class="fu">.</span>0e4
+<span class="dv">1000</span><span class="fu">.</span><span class="dv">0</span>
+λ&gt; <span class="dv">36</span> <span class="fu">**</span> <span class="dv">0</span><span class="fu">.</span><span class="dv">5</span>
+<span class="dv">6</span><span class="fu">.</span><span class="dv">0</span></code></pre>
+</td></tr></table>
+
+</section>
+<section id="in-prefix-form" class="slide level1 big-code small-title">
+<h1>In (prefix) form</h1>
+<style>
+.code-table pre code { padding: 0; }
+</style>
+<table width="100%" class="code-table"><tr><td width="50%">
+<pre class="sourceCode haskell"><code class="sourceCode haskell">λ&gt; <span class="dv">486</span>
+<span class="dv">486</span>
+λ&gt; (<span class="fu">+</span>) <span class="dv">137</span> <span class="dv">349</span>
+<span class="dv">486</span>
+λ&gt; (<span class="fu">-</span>) <span class="dv">1000</span> <span class="dv">334</span>
+<span class="dv">666</span>
+λ&gt; (<span class="fu">-</span>) (<span class="fu">-</span><span class="dv">2</span>) (<span class="fu">-</span><span class="dv">3</span>)
+<span class="dv">1</span>
+λ&gt; (<span class="fu">*</span>) <span class="dv">5</span> <span class="dv">99</span>
+<span class="dv">495</span>
+λ&gt; (<span class="fu">^</span>) <span class="dv">2</span> <span class="dv">16</span>
+<span class="dv">65536</span></code></pre>
+</td><td>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">λ&gt; <span class="fu">-</span><span class="dv">2</span>
+<span class="fu">-</span><span class="dv">2</span>
+λ&gt; <span class="dv">1</span><span class="fu">.</span><span class="dv">1</span>
+<span class="dv">1</span><span class="fu">.</span><span class="dv">1</span>
+λ&gt; (<span class="fu">/</span>) <span class="dv">10</span> <span class="dv">5</span>
+<span class="dv">2</span><span class="fu">.</span><span class="dv">0</span>
+λ&gt; (<span class="fu">+</span>) <span class="dv">2</span><span class="fu">.</span><span class="dv">7</span> <span class="dv">10</span>
+<span class="dv">12</span><span class="fu">.</span><span class="dv">7</span>
+λ&gt; (<span class="fu">*</span>) <span class="dv">0</span><span class="fu">.</span><span class="dv">1</span> <span class="dv">1</span><span class="fu">.</span>0e4
+<span class="dv">1000</span><span class="fu">.</span><span class="dv">0</span>
+λ&gt; (<span class="fu">**</span>) <span class="dv">36</span> <span class="dv">0</span><span class="fu">.</span><span class="dv">5</span>
+<span class="dv">6</span><span class="fu">.</span><span class="dv">0</span></code></pre>
+</td></tr></table>
+
+</section>
+<section id="let-there-be-variables" class="slide level1 big-code small-title">
+<h1>Let there be variables</h1>
+<ul>
+<li>Variables must start with a lower-case letter or underscore.</li>
+<li>By convention, <code>theyAreWrittenLikeThis</code>.</li>
+<li>A leading underscore implies that it is an unused variable, but this is only used to silence compiler warnings.</li>
+</ul>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">λ&gt; <span class="kw">let</span> x <span class="fu">=</span> <span class="dv">10</span> <span class="kw">in</span> x <span class="fu">*</span> x
+<span class="dv">100</span>
+λ&gt; <span class="kw">let</span> { x <span class="fu">=</span> <span class="dv">10</span>; y <span class="fu">=</span> <span class="dv">2</span> } <span class="kw">in</span> x <span class="fu">*</span> y
+<span class="dv">20</span>
+λ&gt; <span class="kw">let</span> { x <span class="fu">=</span> <span class="dv">2</span> <span class="fu">*</span> y; y <span class="fu">=</span> <span class="dv">40</span> } <span class="kw">in</span> x <span class="fu">*</span> y
+<span class="dv">3200</span>
+λ&gt; <span class="kw">let</span> { x <span class="fu">=</span> undefined; y <span class="fu">=</span> <span class="dv">2</span>} <span class="kw">in</span> y
+<span class="dv">2</span>
+λ&gt; <span class="kw">let</span> { r <span class="fu">=</span> <span class="dv">2</span>; area <span class="fu">=</span> pi <span class="fu">*</span> r <span class="fu">*</span> r } <span class="kw">in</span> area
+<span class="dv">12</span><span class="fu">.</span><span class="dv">566370614359172</span></code></pre>
+</section>
+<section id="calling-functions" class="slide level1 big-code small-title">
+<h1>Calling functions</h1>
+<p>Function application looks like <code>function arg</code>. Function application has the highest precedence, so parentheses are not required around operators.</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">λ&gt; even <span class="dv">10</span>
+<span class="dt">True</span>
+λ&gt; negate <span class="dv">4</span>
+<span class="fu">-</span><span class="dv">4</span>
+λ&gt; negate <span class="dv">1</span> <span class="fu">+</span> <span class="dv">10</span>
+<span class="dv">9</span>
+λ&gt; max <span class="dv">4</span> <span class="dv">5</span>
+<span class="dv">5</span>
+λ&gt; <span class="dt">True</span> <span class="fu">&amp;&amp;</span> not (<span class="dt">False</span> <span class="fu">||</span> <span class="dt">True</span>)
+<span class="dt">False</span></code></pre>
+</section>
+<section id="calling-infix-functions" class="slide level1 big-code small-title">
+<h1>Calling `infix` functions</h1>
+<p>Any two argument function can be called in infix form.</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">λ&gt; <span class="dv">4</span> <span class="ot">`max`</span> <span class="dv">5</span>
+<span class="dv">5</span>
+λ&gt; <span class="dv">10</span> <span class="ot">`div`</span> <span class="dv">2</span>
+<span class="dv">5</span>
+λ&gt; <span class="dv">360</span> <span class="ot">`lcm`</span> <span class="dv">13</span>
+<span class="dv">4680</span>
+λ&gt; <span class="dv">360</span> <span class="ot">`divMod`</span> <span class="dv">13</span>
+(<span class="dv">27</span>,<span class="dv">9</span>)</code></pre>
+</section>
+<section id="what-can-i-do" class="slide level1 small-title">
+<h1>What can I do?</h1>
+<p>Haskell's built-in functionality is all in the Prelude module</p>
+<p>Go to <a href="http://www.haskell.org/hoogle/">http://www.haskell.org/hoogle/</a></p>
+<p>Search for Prelude</p>
+<p>Click on the <code>module Prelude</code> result</p>
 </section>
     </div>
   </div>
