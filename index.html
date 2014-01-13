@@ -53,7 +53,7 @@ January 2014
 
 <p>Want to learn more? Take my <a href="http://www.enginehere.com/courses/intro-to-haskell-etrepum/">Intro to Haskell</a> course at<br/> <a href="http://www.enginehere.com/courses/intro-to-haskell-etrepum/">enginehere.com/courses/intro-to-haskell-etrepum</a></p>
 </section>
-<section id="getting-haskell" class="slide level1">
+<section id="getting-haskell" class="slide level1 big-code small-title">
 <h1>Getting Haskell</h1>
 <p>(In order of preference)</p>
 <ul>
@@ -109,7 +109,7 @@ January 2014
 <h1>Exercise 1</h1>
 <ul>
 <li>Try using Haskell's operators to find out what 2 to the 100th power is.</li>
-<li>If you're using the code window here, or FPComplete, the program should look like this, with <code>…</code> replaced by the expression you want to evaluate:</li>
+<li>If you're using the code window here, or <a href="https://www.fpcomplete.com/page/project-build">FP Haskell Center</a>, the program should look like this, with <code>…</code> replaced by the expression you want to evaluate:</li>
 </ul>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print (…)</code></pre>
 </section>
@@ -202,6 +202,16 @@ January 2014
 </tr></td></table>
 
 </section>
+<section id="what-can-i-do" class="slide level1 small-title">
+<h1>What can I do?</h1>
+<ul>
+<li>Haskell's built-in functionality is all in the Prelude module</li>
+<li>Go to <a href="http://www.haskell.org/hoogle/">http://www.haskell.org/hoogle/</a></li>
+<li>Search for Prelude</li>
+<li>Click on the <code>module Prelude</code> result</li>
+<li>Keep this tab open :)</li>
+</ul>
+</section>
 <section id="exercise-3" class="slide level1 big-code small-title">
 <h1>Exercise 3</h1>
 <ul>
@@ -234,7 +244,7 @@ January 2014
 λ&gt; <span class="kw">let</span> { r <span class="fu">=</span> <span class="dv">2</span>; area <span class="fu">=</span> pi <span class="fu">*</span> r <span class="fu">*</span> r } <span class="kw">in</span> area
 <span class="dv">12</span><span class="fu">.</span><span class="dv">566370614359172</span></code></pre>
 </section>
-<section id="exercise-4" class="slide level1">
+<section id="exercise-4" class="slide level1 big-code small-title">
 <h1>Exercise 4</h1>
 <ul>
 <li>Use a <code>let</code> expression with variables <code>r</code> and <code>circumference</code> that evaluates to the circumference of a circle with that radius</li>
@@ -260,45 +270,168 @@ January 2014
 λ&gt; <span class="kw">let</span> add <span class="fu">=</span> (\x <span class="ot">-&gt;</span> (\y <span class="ot">-&gt;</span> x <span class="fu">+</span> y)) <span class="kw">in</span> add <span class="dv">1</span> <span class="dv">2</span>
 <span class="dv">5</span></code></pre>
 </section>
-<section id="exercise-5" class="slide level1">
+<section id="exercise-5" class="slide level1 big-code small-title">
 <h1>Exercise 5</h1>
 <ul>
 <li>Refactor your implementation of Exercise 4 to use a function named <code>circumference</code> that takes an argument <code>r</code> and evaluates to the circumference of a circle with the given radius.</li>
 <li>Bonus: Try doing it with and without the <code>\lambda -&gt;</code> syntax</li>
 </ul>
 </section>
-<section id="lists" class="slide level1">
+<section id="lists" class="slide level1 big-code small-title">
 <h1>Lists</h1>
 <ul>
 <li>Lists in Haskell are linked lists</li>
 <li>They are homogeneous, can only store one type in a list</li>
-<li>The constructors are <code>:</code> (which takes a value on the left and another list on the right) and <code>[]</code> which is the empty list</li>
+<li>The constructors are <code>:</code> and <code>[]</code></li>
 <li>There are several kinds of syntax sugar for creating lists</li>
 </ul>
 </section>
-<section id="making-lists" class="slide level1">
+<section id="making-lists" class="slide level1 big-code small-title">
 <h1>Making lists</h1>
-<ul>
-<li>...</li>
-</ul>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">λ&gt; [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]
+[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]
+λ&gt; <span class="dv">1</span> <span class="fu">:</span> <span class="dv">2</span> <span class="fu">:</span> <span class="dv">3</span> <span class="fu">:</span> <span class="dv">4</span> <span class="fu">:</span> []
+[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]
+λ&gt; (<span class="fu">:</span>) <span class="dv">1</span> ((<span class="fu">:</span>) <span class="dv">2</span> ((<span class="fu">:</span>) <span class="dv">3</span> ((<span class="fu">:</span>) <span class="dv">4</span> [])))
+[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]
+λ&gt; [<span class="ch">&#39;a&#39;</span>, <span class="ch">&#39;b&#39;</span>, <span class="ch">&#39;c&#39;</span>, <span class="ch">&#39;d&#39;</span>]
+<span class="st">&quot;abcd&quot;</span>
+λ&gt; <span class="ch">&#39;a&#39;</span> <span class="fu">:</span> <span class="ch">&#39;b&#39;</span> <span class="fu">:</span> <span class="st">&quot;cd&quot;</span>
+<span class="st">&quot;abcd&quot;</span>
+λ&gt; [<span class="dt">True</span>, <span class="dv">1</span> <span class="fu">==</span> <span class="dv">0</span>, <span class="dv">1</span> <span class="fu">&gt;</span> <span class="dv">0</span>]
+[<span class="dt">True</span>,<span class="dt">False</span>,<span class="dt">True</span>]
+λ&gt; [<span class="dv">1</span>, <span class="dv">2</span>] <span class="fu">++</span> [<span class="dv">3</span>, <span class="dv">4</span>]
+[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]</code></pre>
 </section>
 <section id="strings" class="slide level1 big-code small-title">
 <h1>Strings!</h1>
+<ul>
+<li>Strings in Haskell are lists of Char, or <code>[Char]</code></li>
+<li>They support the full range of unicode</li>
+<li>There are other data types for bytes and text in the Haskell Platform that can be more efficient, but we'll start with String</li>
+</ul>
+</section>
+<section id="exercise-6" class="slide level1">
+<h1>Exercise 6</h1>
+<ul>
+<li>Implement a function named <code>showNumber</code> that given a number, evaluates to the string &quot;Your number is: &quot; with the given number as a string appended to it.</li>
+<li>For example: <code>showNumber 10</code> would evaluate to<br/><code>&quot;Your number is: 10&quot;</code></li>
+<li>HINT: Use the <code>show</code> function to do this, <code>show 10</code> evaluates to <code>&quot;10&quot;</code></li>
+</ul>
 </section>
 <section id="basic-io" class="slide level1 big-code small-title">
 <h1>Basic IO</h1>
 <ul>
-<li><code>print</code>, <code>putStrLn</code>, <code>getLine</code>, …</li>
+<li>Programs don't do anything without IO</li>
+<li>Haskell will call your main function and interpret IO actions</li>
+<li>IO actions can be sequenced, or combined</li>
 </ul>
 </section>
-<section id="what-can-i-do" class="slide level1 small-title">
-<h1>What can I do?</h1>
+<section id="running-haskell-programs" class="slide level1 big-code small-title">
+<h1>Running Haskell programs</h1>
 <ul>
-<li>Haskell's built-in functionality is all in the Prelude module</li>
-<li>Go to <a href="http://www.haskell.org/hoogle/">http://www.haskell.org/hoogle/</a></li>
-<li>Search for Prelude</li>
-<li>Click on the <code>module Prelude</code> result</li>
+<li>The EngineHere code runner doesn't support input</li>
+<li>Please use a locally installed Haskell to run these</li>
+<li>Or use <a href="https://www.fpcomplete.com/page/project-build">FP Haskell Center</a>, which does support input</li>
+<li>Create the .hs file with a text editor and use <code>runhaskell</code> to interpret them</li>
 </ul>
+</section>
+<section id="putstr" class="slide level1 big-code small-title">
+<h1>putStr</h1>
+<p>Hello.hs</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStr <span class="st">&quot;hello\n&quot;</span></code></pre>
+<hr/>
+
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">runhaskell</span> Hello.hs
+<span class="kw">hello</span></code></pre>
+</section>
+<section id="putstrln" class="slide level1 big-code small-title">
+<h1>putStrLn</h1>
+<p>Hello.hs</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="st">&quot;hello&quot;</span></code></pre>
+<hr/>
+
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">runhaskell</span> Hello.hs
+<span class="kw">hello</span></code></pre>
+</section>
+<section id="print" class="slide level1 big-code small-title">
+<h1>print</h1>
+<p>Hello.hs</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> <span class="kw">do</span>
+  print <span class="st">&quot;hello&quot;</span>
+  putStrLn (show <span class="st">&quot;hello&quot;</span>)
+  putStr (show <span class="st">&quot;hello&quot;</span> <span class="fu">++</span> <span class="st">&quot;\n&quot;</span>)</code></pre>
+<hr/>
+
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">runhaskell</span> Hello.hs
+<span class="st">&quot;hello&quot;</span>
+<span class="st">&quot;hello&quot;</span>
+<span class="st">&quot;hello&quot;</span></code></pre>
+</section>
+<section id="getline" class="slide level1 big-code small-title">
+<h1>getLine</h1>
+<ul>
+<li><code>&lt;-</code> binds the result of an IO action to a variable</li>
+</ul>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> <span class="kw">do</span>
+  putStrLn <span class="st">&quot;Enter your name:&quot;</span>
+  name <span class="ot">&lt;-</span> getLine
+  putStrLn (<span class="st">&quot;You entered: &quot;</span> <span class="fu">++</span> name)</code></pre>
+</section>
+<section id="return" class="slide level1 big-code small-title">
+<h1>return</h1>
+<ul>
+<li><code>return</code> creates an IO action from a value</li>
+<li>It has nothing to do with exiting a function!</li>
+</ul>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> <span class="kw">do</span>
+  putStrLn <span class="st">&quot;Enter your name:&quot;</span>
+  name <span class="ot">&lt;-</span> return <span class="st">&quot;Bob&quot;</span>
+  putStrLn (<span class="st">&quot;You entered: &quot;</span> <span class="fu">++</span> name)</code></pre>
+</section>
+<section id="recursion" class="slide level1">
+<h1>Recursion</h1>
+<ul>
+<li>You can press ^C (Control and C at the same time) to abort this!</li>
+</ul>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> <span class="kw">do</span>
+  putStrLn <span class="st">&quot;Enter your name:&quot;</span>
+  name <span class="ot">&lt;-</span> return <span class="st">&quot;Bob&quot;</span>
+  putStrLn (<span class="st">&quot;You entered: &quot;</span> <span class="fu">++</span> name)
+  main</code></pre>
+</section>
+<section id="state" class="slide level1">
+<h1>State</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">nameLoop names <span class="fu">=</span> <span class="kw">do</span>
+  putStrLn <span class="st">&quot;Who are you?&quot;</span>
+  name <span class="ot">&lt;-</span> getLine
+  <span class="kw">if</span> name <span class="ot">`elem`</span> names
+    <span class="kw">then</span> <span class="kw">do</span>
+      putStrLn (<span class="st">&quot;I already know &quot;</span> <span class="fu">++</span> name)
+      nameLoop names
+    <span class="kw">else</span> <span class="kw">do</span>
+      putStrLn (<span class="st">&quot;Nice to meet you &quot;</span> <span class="fu">++</span> name)
+      nameLoop (name <span class="fu">:</span> names)
+
+main <span class="fu">=</span> nameLoop []</code></pre>
+</section>
+<section id="modules" class="slide level1 big-code small-title">
+<h1>Modules</h1>
+</section>
+<section id="types" class="slide level1 big-code small-title">
+<h1>Types</h1>
+</section>
+<section id="defining-types" class="slide level1 big-code small-title">
+<h1>Defining types</h1>
+</section>
+<section id="pattern-matching" class="slide level1 big-code small-title">
+<h1>Pattern matching</h1>
+</section>
+<section id="guards" class="slide level1 big-code small-title">
+<h1>Guards</h1>
+</section>
+<section id="ifthenelse" class="slide level1 big-code small-title">
+<h1>If/then/else</h1>
 </section>
     </div>
   </div>

@@ -5,13 +5,13 @@
 Want to learn more? Take my [Intro to Haskell] course at<br/>
 [enginehere.com/courses/intro-to-haskell-etrepum](http://www.enginehere.com/courses/intro-to-haskell-etrepum/)
 
-# Getting Haskell
+# Getting Haskell {.big-code .small-title}
 
 (In order of preference)
 
 * Download from
   [haskell.org/platform](http://www.haskell.org/platform/)
-* Use [FP Haskell Center](https://www.fpcomplete.com/page/project-build)
+* Use [FP Haskell Center]
 * Play with [tryhaskell.org](http://tryhaskell.org/)
 
 # Interactive Haskell {.small-title}
@@ -62,7 +62,7 @@ Want to learn more? Take my [Intro to Haskell] course at<br/>
 
 * Try using Haskell's operators to find out what 2 to the 100th
   power is.
-* If you're using the code window here, or FPComplete, the program should
+* If you're using the code window here, or [FP Haskell Center], the program should
   look like this, with `…` replaced by the expression you want to
   evaluate:
 
@@ -164,6 +164,14 @@ False
 ```
 </tr></td></table>
 
+# What can I do? {.small-title}
+
+* Haskell's built-in functionality is all in the Prelude module
+* Go to <http://www.haskell.org/hoogle/>
+* Search for Prelude
+* Click on the `module Prelude` result
+* Keep this tab open :)
+
 # Exercise 3 {.big-code .small-title}
 
 * Write an expression to calculate the last four decimal digits of `3 ^ 1337`.
@@ -198,7 +206,7 @@ False
 12.566370614359172
 ```
 
-# Exercise 4
+# Exercise 4 {.big-code .small-title}
 
 * Use a `let` expression with variables `r` and `circumference` that
   evaluates to the circumference of a circle with that radius
@@ -227,36 +235,178 @@ False
 5
 ```
 
-# Exercise 5
+# Exercise 5 {.big-code .small-title}
 
 * Refactor your implementation of Exercise 4 to use a function named
   `circumference` that takes an argument `r` and evaluates to the
   circumference of a circle with the given radius.
 * Bonus: Try doing it with and without the `\lambda ->` syntax
 
-# Lists
+# Lists {.big-code .small-title}
 
 * Lists in Haskell are linked lists
 * They are homogeneous, can only store one type in a list
-* The constructors are `:` (which takes a value on the left and
-  another list on the right) and `[]` which is the empty list
+* The constructors are `:` and `[]`
 * There are several kinds of syntax sugar for creating lists
 
-# Making lists
+# Making lists {.big-code .small-title}
 
-* ...
+```haskell
+λ> [1, 2, 3, 4]
+[1,2,3,4]
+λ> 1 : 2 : 3 : 4 : []
+[1,2,3,4]
+λ> (:) 1 ((:) 2 ((:) 3 ((:) 4 [])))
+[1,2,3,4]
+λ> ['a', 'b', 'c', 'd']
+"abcd"
+λ> 'a' : 'b' : "cd"
+"abcd"
+λ> [True, 1 == 0, 1 > 0]
+[True,False,True]
+λ> [1, 2] ++ [3, 4]
+[1,2,3,4]
+```
 
 # Strings! {.big-code .small-title}
 
+* Strings in Haskell are lists of Char, or `[Char]`
+* They support the full range of unicode
+* There are other data types for bytes and text in the Haskell
+  Platform that can be more efficient, but we'll start with String
+
+# Exercise 6
+
+* Implement a function named `showNumber` that given a number,
+  evaluates to the string "Your number is: " with the given number
+  as a string appended to it.
+* For example: `showNumber 10` would evaluate to<br/>`"Your number is: 10"`
+* HINT: Use the `show` function to do this, `show 10` evaluates to `"10"`
+
 # Basic IO {.big-code .small-title}
 
-* `print`, `putStrLn`, `getLine`, &hellip;
+* Programs don't do anything without IO
+* Haskell will call your main function and interpret IO actions
+* IO actions can be sequenced, or combined
 
-# What can I do? {.small-title}
+# Running Haskell programs {.big-code .small-title}
 
-* Haskell's built-in functionality is all in the Prelude module
-* Go to <http://www.haskell.org/hoogle/>
-* Search for Prelude
-* Click on the `module Prelude` result
+* The EngineHere code runner doesn't support input
+* Please use a locally installed Haskell to run these
+* Or use [FP Haskell Center], which does support input
+* Create the .hs file with a text editor and use `runhaskell` to
+  interpret them
+
+# putStr {.big-code .small-title}
+
+Hello.hs
+```haskell
+main = putStr "hello\n"
+```
+
+<hr/>
+
+```bash
+$ runhaskell Hello.hs
+hello
+```
+
+# putStrLn {.big-code .small-title}
+
+Hello.hs
+```haskell
+main = putStrLn "hello"
+```
+
+<hr/>
+
+```bash
+$ runhaskell Hello.hs
+hello
+```
+
+# print {.big-code .small-title}
+
+Hello.hs
+```haskell
+main = do
+  print "hello"
+  putStrLn (show "hello")
+  putStr (show "hello" ++ "\n")
+```
+
+<hr/>
+
+```bash
+$ runhaskell Hello.hs
+"hello"
+"hello"
+"hello"
+```
+
+# getLine {.big-code .small-title}
+
+* `<-` binds the result of an IO action to a variable
+
+```haskell
+main = do
+  putStrLn "Enter your name:"
+  name <- getLine
+  putStrLn ("You entered: " ++ name)
+```
+
+# return {.big-code .small-title}
+
+* `return` creates an IO action from a value
+* It has nothing to do with exiting a function!
+
+```haskell
+main = do
+  putStrLn "Enter your name:"
+  name <- return "Bob"
+  putStrLn ("You entered: " ++ name)
+```
+
+# Recursion
+
+* You can press ^C (Control and C at the same time) to abort this!
+
+```haskell
+main = do
+  putStrLn "Enter your name:"
+  name <- return "Bob"
+  putStrLn ("You entered: " ++ name)
+  main
+```
+
+# State
+
+```haskell
+nameLoop names = do
+  putStrLn "Who are you?"
+  name <- getLine
+  if name `elem` names
+    then do
+      putStrLn ("I already know " ++ name)
+      nameLoop names
+    else do
+      putStrLn ("Nice to meet you " ++ name)
+      nameLoop (name : names)
+
+main = nameLoop []
+```
+
+# Modules {.big-code .small-title}
+
+# Types {.big-code .small-title}
+
+# Defining types {.big-code .small-title}
+
+# Pattern matching {.big-code .small-title}
+
+# Guards {.big-code .small-title}
+
+# If/then/else {.big-code .small-title}
 
 [Intro to Haskell]: http://www.enginehere.com/courses/intro-to-haskell-etrepum/
+[FP Haskell Center]: https://www.fpcomplete.com/page/project-build
