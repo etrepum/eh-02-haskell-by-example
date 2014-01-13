@@ -105,6 +105,14 @@ January 2014
 </td></tr></table>
 
 </section>
+<section id="exercise-1" class="slide level1 big-code small-title">
+<h1>Exercise 1</h1>
+<ul>
+<li>Try using Haskell's operators to find out what 2 to the 100th power is.</li>
+<li>If you're using the code window here, or FPComplete, the program should look like this, with <code>…</code> replaced by the expression you want to evaluate:</li>
+</ul>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print (…)</code></pre>
+</section>
 <section id="in-prefix-form" class="slide level1 big-code small-title">
 <h1>In (prefix) form</h1>
 <table width="100%" class="code-table"><tr><td width="50%">
@@ -136,32 +144,17 @@ January 2014
 </td></tr></table>
 
 </section>
-<section id="let-there-be-variables" class="slide level1 big-code small-title">
-<h1>Let there be variables</h1>
+<section id="exercise-2" class="slide level1 small-title">
+<h1>Exercise 2</h1>
 <ul>
-<li>Variables must start with a lower-case letter or underscore.</li>
-<li>By convention, <code>theyAreWrittenLikeThis</code>.</li>
-<li>A leading underscore implies that it is an unused variable, but this is only used to silence compiler warnings.</li>
+<li>Convert your program from Exercise 1 to use the operators in prefix form.</li>
 </ul>
-</section>
-<section id="using-let" class="slide level1 big-code small-title">
-<h1>Using let</h1>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">λ&gt; <span class="kw">let</span> x <span class="fu">=</span> <span class="dv">10</span> <span class="kw">in</span> x <span class="fu">*</span> x
-<span class="dv">100</span>
-λ&gt; <span class="kw">let</span> { x <span class="fu">=</span> <span class="dv">10</span>; y <span class="fu">=</span> <span class="dv">2</span> } <span class="kw">in</span> x <span class="fu">*</span> y
-<span class="dv">20</span>
-λ&gt; <span class="kw">let</span> { x <span class="fu">=</span> <span class="dv">2</span> <span class="fu">*</span> y; y <span class="fu">=</span> <span class="dv">40</span> } <span class="kw">in</span> x <span class="fu">*</span> y
-<span class="dv">3200</span>
-λ&gt; <span class="kw">let</span> { x <span class="fu">=</span> undefined; y <span class="fu">=</span> <span class="dv">2</span> } <span class="kw">in</span> y
-<span class="dv">2</span>
-λ&gt; <span class="kw">let</span> { r <span class="fu">=</span> <span class="dv">2</span>; area <span class="fu">=</span> pi <span class="fu">*</span> r <span class="fu">*</span> r } <span class="kw">in</span> area
-<span class="dv">12</span><span class="fu">.</span><span class="dv">566370614359172</span></code></pre>
 </section>
 <section id="calling-functions" class="slide level1 big-code small-title">
 <h1>Calling functions</h1>
 <ul>
 <li>Function application looks like <code>function arg</code>.</li>
-<li>No parentheses.</li>
+<li>No parentheses required.</li>
 <li>Function application has the highest precedence (higher than any operator).</li>
 </ul>
 </section>
@@ -208,6 +201,89 @@ January 2014
 <span class="dt">False</span></code></pre>
 </tr></td></table>
 
+</section>
+<section id="exercise-3" class="slide level1 big-code small-title">
+<h1>Exercise 3</h1>
+<ul>
+<li>Write an expression to calculate the last four decimal digits of <code>3 ^ 1337</code>.</li>
+<li>You can use the <code>mod</code> function for this, try evaluating these expressions:</li>
+</ul>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">λ&gt; mod <span class="dv">1234</span> <span class="dv">100</span>
+…
+λ&gt; <span class="dv">1234</span> <span class="ot">`mod`</span> <span class="dv">10</span>
+…</code></pre>
+</section>
+<section id="let-there-be-variables" class="slide level1 big-code small-title">
+<h1>Let there be variables</h1>
+<ul>
+<li>Variables must start with a lower-case letter or underscore.</li>
+<li>By convention, <code>theyAreWrittenLikeThis</code>.</li>
+<li>A leading underscore implies that it is an unused variable, but this is only used to silence compiler warnings.</li>
+</ul>
+</section>
+<section id="using-let" class="slide level1 big-code small-title">
+<h1>Using let</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">λ&gt; <span class="kw">let</span> x <span class="fu">=</span> <span class="dv">10</span> <span class="kw">in</span> x <span class="fu">*</span> x
+<span class="dv">100</span>
+λ&gt; <span class="kw">let</span> { x <span class="fu">=</span> <span class="dv">10</span>; y <span class="fu">=</span> <span class="dv">2</span> } <span class="kw">in</span> x <span class="fu">*</span> y
+<span class="dv">20</span>
+λ&gt; <span class="kw">let</span> { x <span class="fu">=</span> <span class="dv">2</span> <span class="fu">*</span> y; y <span class="fu">=</span> <span class="dv">40</span> } <span class="kw">in</span> x <span class="fu">*</span> y
+<span class="dv">3200</span>
+λ&gt; <span class="kw">let</span> { x <span class="fu">=</span> undefined; y <span class="fu">=</span> <span class="dv">2</span> } <span class="kw">in</span> y
+<span class="dv">2</span>
+λ&gt; <span class="kw">let</span> { r <span class="fu">=</span> <span class="dv">2</span>; area <span class="fu">=</span> pi <span class="fu">*</span> r <span class="fu">*</span> r } <span class="kw">in</span> area
+<span class="dv">12</span><span class="fu">.</span><span class="dv">566370614359172</span></code></pre>
+</section>
+<section id="exercise-4" class="slide level1">
+<h1>Exercise 4</h1>
+<ul>
+<li>Use a <code>let</code> expression with variables <code>r</code> and <code>circumference</code> that evaluates to the circumference of a circle with that radius</li>
+</ul>
+</section>
+<section id="define-your-own-functions" class="slide level1 big-code small-title">
+<h1>Define your own functions</h1>
+<ul>
+<li>All functions in Haskell take exactly one argument</li>
+<li>… but there's syntax to make it seem like there are multi-argument functions!</li>
+</ul>
+</section>
+<section id="functions-and-lambdas-λ" class="slide level1 big-code small-title">
+<h1>Functions and Lambdas (λ)</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- this is far more common than lambda syntax</span>
+λ&gt; <span class="kw">let</span> inc x <span class="fu">=</span> x <span class="fu">+</span> <span class="dv">1</span> <span class="kw">in</span> inc <span class="dv">10</span>
+<span class="dv">11</span>
+λ&gt; <span class="kw">let</span> add x y <span class="fu">=</span> x <span class="fu">+</span> y <span class="kw">in</span> add <span class="dv">1</span> <span class="dv">2</span>
+<span class="dv">3</span></code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- parentheses only used for clarity here</span>
+λ&gt; <span class="kw">let</span> inc <span class="fu">=</span> (\x <span class="ot">-&gt;</span> x <span class="fu">+</span> <span class="dv">1</span>) <span class="kw">in</span> inc <span class="dv">10</span>
+<span class="dv">11</span>
+λ&gt; <span class="kw">let</span> add <span class="fu">=</span> (\x <span class="ot">-&gt;</span> (\y <span class="ot">-&gt;</span> x <span class="fu">+</span> y)) <span class="kw">in</span> add <span class="dv">1</span> <span class="dv">2</span>
+<span class="dv">5</span></code></pre>
+</section>
+<section id="exercise-5" class="slide level1">
+<h1>Exercise 5</h1>
+<ul>
+<li>Refactor your implementation of Exercise 4 to use a function named <code>circumference</code> that takes an argument <code>r</code> and evaluates to the circumference of a circle with the given radius.</li>
+<li>Bonus: Try doing it with and without the <code>\lambda -&gt;</code> syntax</li>
+</ul>
+</section>
+<section id="lists" class="slide level1">
+<h1>Lists</h1>
+<ul>
+<li>Lists in Haskell are linked lists</li>
+<li>They are homogeneous, can only store one type in a list</li>
+<li>The constructors are <code>:</code> (which takes a value on the left and another list on the right) and <code>[]</code> which is the empty list</li>
+<li>There are several kinds of syntax sugar for creating lists</li>
+</ul>
+</section>
+<section id="making-lists" class="slide level1">
+<h1>Making lists</h1>
+<ul>
+<li>...</li>
+</ul>
+</section>
+<section id="strings" class="slide level1 big-code small-title">
+<h1>Strings!</h1>
 </section>
 <section id="basic-io" class="slide level1 big-code small-title">
 <h1>Basic IO</h1>

@@ -58,6 +58,18 @@ Want to learn more? Take my [Intro to Haskell] course at<br/>
 ```
 </td></tr></table>
 
+# Exercise 1 {.big-code .small-title}
+
+* Try using Haskell's operators to find out what 2 to the 100th
+  power is.
+* If you're using the code window here, or FPComplete, the program should
+  look like this, with `…` replaced by the expression you want to
+  evaluate:
+
+```haskell
+main = print (…)
+```
+
 # In (prefix) form {.big-code .small-title}
 
 <table width="100%" class="code-table"><tr><td width="50%">
@@ -92,32 +104,15 @@ Want to learn more? Take my [Intro to Haskell] course at<br/>
 ```
 </td></tr></table>
 
-# Let there be variables {.big-code .small-title}
+# Exercise 2 {.small-title}
 
-* Variables must start with a lower-case letter or underscore.
-* By convention, `theyAreWrittenLikeThis`.
-* A leading underscore implies that it is an unused variable,
-  but this is only used to silence compiler warnings.
-
-# Using let {.big-code .small-title}
-
-```haskell
-λ> let x = 10 in x * x
-100
-λ> let { x = 10; y = 2 } in x * y
-20
-λ> let { x = 2 * y; y = 40 } in x * y
-3200
-λ> let { x = undefined; y = 2 } in y
-2
-λ> let { r = 2; area = pi * r * r } in area
-12.566370614359172
-```
+* Convert your program from Exercise 1 to use the operators in prefix
+  form.
 
 # Calling functions {.big-code .small-title}
 
 * Function application looks like `function arg`.
-* No parentheses.
+* No parentheses required.
 * Function application has the highest precedence (higher than any operator).
 
 # Using functions {.big-code .small-title}
@@ -168,6 +163,90 @@ True
 False
 ```
 </tr></td></table>
+
+# Exercise 3 {.big-code .small-title}
+
+* Write an expression to calculate the last four decimal digits of `3 ^ 1337`.
+* You can use the `mod` function for this, try evaluating these expressions:
+
+```haskell
+λ> mod 1234 100
+…
+λ> 1234 `mod` 10
+…
+```
+
+# Let there be variables {.big-code .small-title}
+
+* Variables must start with a lower-case letter or underscore.
+* By convention, `theyAreWrittenLikeThis`.
+* A leading underscore implies that it is an unused variable,
+  but this is only used to silence compiler warnings.
+
+# Using let {.big-code .small-title}
+
+```haskell
+λ> let x = 10 in x * x
+100
+λ> let { x = 10; y = 2 } in x * y
+20
+λ> let { x = 2 * y; y = 40 } in x * y
+3200
+λ> let { x = undefined; y = 2 } in y
+2
+λ> let { r = 2; area = pi * r * r } in area
+12.566370614359172
+```
+
+# Exercise 4
+
+* Use a `let` expression with variables `r` and `circumference` that
+  evaluates to the circumference of a circle with that radius
+
+# Define your own functions {.big-code .small-title}
+
+* All functions in Haskell take exactly one argument
+* &hellip; but there's syntax to make it seem like there
+  are multi-argument functions!
+
+# Functions and Lambdas (λ) {.big-code .small-title}
+
+```haskell
+-- this is far more common than lambda syntax
+λ> let inc x = x + 1 in inc 10
+11
+λ> let add x y = x + y in add 1 2
+3
+```
+
+```haskell
+-- parentheses only used for clarity here
+λ> let inc = (\x -> x + 1) in inc 10
+11
+λ> let add = (\x -> (\y -> x + y)) in add 1 2
+5
+```
+
+# Exercise 5
+
+* Refactor your implementation of Exercise 4 to use a function named
+  `circumference` that takes an argument `r` and evaluates to the
+  circumference of a circle with the given radius.
+* Bonus: Try doing it with and without the `\lambda ->` syntax
+
+# Lists
+
+* Lists in Haskell are linked lists
+* They are homogeneous, can only store one type in a list
+* The constructors are `:` (which takes a value on the left and
+  another list on the right) and `[]` which is the empty list
+* There are several kinds of syntax sugar for creating lists
+
+# Making lists
+
+* ...
+
+# Strings! {.big-code .small-title}
 
 # Basic IO {.big-code .small-title}
 

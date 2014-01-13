@@ -7,6 +7,8 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
 }
+.reveal pre { margin-left: 0; }
+.reveal pre code { padding: 0; }
 .code-table pre code { padding: 0; }
 
 .reveal { font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif; font-weight: normal; }
