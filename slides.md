@@ -455,7 +455,7 @@ main = do
   putStrLn ("You entered: " ++ name)
 ```
 
-# Recursion in IO
+# Recursion in IO {.big-code .small-title}
 
 * You can press ^C (Control and C at the same time) to abort this!
 
@@ -467,7 +467,7 @@ main = do
   main
 ```
 
-# State
+# State {.big-code .small-title}
 
 ```haskell
 nameLoop names = do
