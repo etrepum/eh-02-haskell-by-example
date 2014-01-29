@@ -60,7 +60,7 @@ svg.full { width: 100%; }
 .diagram .right-title text { text-anchor: end; font-weight: bold; }
 
 body > div.reveal {
-  background-image: url(http://bob.ippoli.to/why-haskell-2013/img/Haskell-Logo-Background.svg);
+  background-image: url(../img/Haskell-Logo-Background.svg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
