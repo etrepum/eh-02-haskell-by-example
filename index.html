@@ -319,6 +319,90 @@ January 2014
 <li>HINT: Use the <code>show</code> function to do this, <code>show 10</code> evaluates to <code>&quot;10&quot;</code></li>
 </ul>
 </section>
+<section id="ifthenelse" class="slide level1 big-code small-title">
+<h1>If/then/else</h1>
+<ul>
+<li>if <em>predicate</em> then <em>consequent</em> else <em>alternative</em></li>
+</ul>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">fib x <span class="fu">=</span>
+  <span class="kw">if</span> x <span class="fu">&gt;</span> <span class="dv">1</span> <span class="kw">then</span> fib (x <span class="fu">-</span> <span class="dv">1</span>) <span class="fu">+</span> fib (x <span class="fu">-</span> <span class="dv">2</span>) <span class="kw">else</span> x
+
+fib x <span class="fu">=</span>
+  <span class="kw">if</span> x <span class="fu">&gt;</span> <span class="dv">1</span>
+    <span class="kw">then</span> fib (x <span class="fu">-</span> <span class="dv">1</span>) <span class="fu">+</span> fib (x <span class="fu">-</span> <span class="dv">2</span>)
+    <span class="kw">else</span> x</code></pre>
+</section>
+<section id="exercise-7" class="slide level1">
+<h1>Exercise 7</h1>
+<ul>
+<li>Implement a function named <code>fac</code> that given a positive integer, evalues to the factorial of that number.</li>
+<li>In pseudocode: <code>fac n = n * (n - 1) * (n - 2) * … * 2 * 1</code></li>
+</ul>
+</section>
+<section id="pattern-matching" class="slide level1 big-code small-title">
+<h1>Pattern matching</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">fib x <span class="fu">=</span>
+  <span class="kw">case</span> x <span class="kw">of</span> {<span class="dv">0</span> <span class="ot">-&gt;</span> <span class="dv">0</span>; <span class="dv">1</span> <span class="ot">-&gt;</span> <span class="dv">1</span>; _ <span class="ot">-&gt;</span> fib (x<span class="fu">-</span><span class="dv">1</span>) <span class="fu">+</span> fib (x<span class="fu">-</span><span class="dv">2</span>)}
+
+fib x <span class="fu">=</span> <span class="kw">case</span> x <span class="kw">of</span>
+  <span class="dv">0</span> <span class="ot">-&gt;</span> <span class="dv">0</span>
+  <span class="dv">1</span> <span class="ot">-&gt;</span> <span class="dv">1</span>
+  _ <span class="ot">-&gt;</span> fib (x <span class="fu">-</span> <span class="dv">1</span>) <span class="fu">+</span> fib (x <span class="fu">-</span> <span class="dv">2</span>)
+  
+fib <span class="dv">0</span> <span class="fu">=</span> <span class="dv">0</span>
+fib <span class="dv">1</span> <span class="fu">=</span> <span class="dv">1</span>
+fib x <span class="fu">=</span> fib (x <span class="fu">-</span> <span class="dv">1</span>) <span class="fu">+</span> fib (x <span class="fu">-</span> <span class="dv">2</span>)</code></pre>
+</section>
+<section id="matching-lists" class="slide level1 big-code small-title">
+<h1>Matching lists</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">lastElem [] <span class="fu">=</span> error <span class="st">&quot;empty list&quot;</span>
+lastElem (x <span class="fu">:</span> []) <span class="fu">=</span> x
+lastElem (_ <span class="fu">:</span> xs) <span class="fu">=</span> lastElem xs
+
+lastElem [] <span class="fu">=</span> error <span class="st">&quot;empty list&quot;</span>
+lastElem [x] <span class="fu">=</span> x
+lastElem (_ <span class="fu">:</span> xs) <span class="fu">=</span> lastElem xs</code></pre>
+</section>
+<section id="exercise-8" class="slide level1">
+<h1>Exercise 8</h1>
+<ul>
+<li>Implement a function named <code>firstElem</code> that evaluates to the first element of the given list, or <code>error &quot;empty list&quot;</code> if given an empty list.</li>
+<li>Use only pattern matching and recursion to implement this function.</li>
+<li>Example: <code>firstElem [1,2,3] == 1</code></li>
+</ul>
+</section>
+<section id="exercise-9" class="slide level1">
+<h1>Exercise 9</h1>
+<ul>
+<li>Implement a function named <code>nth</code> that evaluates to the nth element of a list (with zero based indexing), or <code>error &quot;index too large&quot;</code> if the list is too short.</li>
+<li>Use only pattern matching and recursion to implement this function.</li>
+<li>Example: <code>nth 1 [1,2,3] == 2</code></li>
+</ul>
+</section>
+<section id="guards" class="slide level1 big-code small-title">
+<h1>Guards</h1>
+<ul>
+<li>Guards are great syntax sugar for checking conditions</li>
+<li>Can be used with case or when defining functions</li>
+<li><code>otherwise</code> is equivalent to <code>True</code></li>
+</ul>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">evens xs <span class="fu">=</span> <span class="kw">case</span> xs <span class="kw">of</span>
+  [] <span class="ot">-&gt;</span> []
+  (x <span class="fu">:</span> xs&#39;) <span class="fu">|</span> x <span class="ot">`rem`</span> <span class="dv">2</span> <span class="fu">==</span> <span class="dv">0</span> <span class="ot">-&gt;</span> x <span class="fu">:</span> evens xs&#39;
+            <span class="fu">|</span> otherwise      <span class="ot">-&gt;</span> evens xs&#39;
+
+evens [] <span class="fu">=</span> []
+evens (x<span class="fu">:</span>xs)
+  <span class="fu">|</span> x <span class="ot">`rem`</span> <span class="dv">2</span> <span class="fu">==</span> <span class="dv">0</span> <span class="fu">=</span> x <span class="fu">:</span> evens xs
+  <span class="fu">|</span> otherwise      <span class="fu">=</span> evens xs</code></pre>
+</section>
+<section id="exercise-10" class="slide level1">
+<h1>Exercise 10</h1>
+<ul>
+<li>Using guards, implement <code>select</code> which returns the list elements that match the given predicate.</li>
+<li>Example: <code>select (&gt;5) [2,4,6,8,10] == [6,8,10]</code></li>
+</ul>
+</section>
 <section id="basic-io" class="slide level1 big-code small-title">
 <h1>Basic IO</h1>
 <ul>
@@ -389,8 +473,8 @@ January 2014
   name <span class="ot">&lt;-</span> return <span class="st">&quot;Bob&quot;</span>
   putStrLn (<span class="st">&quot;You entered: &quot;</span> <span class="fu">++</span> name)</code></pre>
 </section>
-<section id="recursion" class="slide level1">
-<h1>Recursion</h1>
+<section id="recursion-in-io" class="slide level1">
+<h1>Recursion in IO</h1>
 <ul>
 <li>You can press ^C (Control and C at the same time) to abort this!</li>
 </ul>
@@ -423,15 +507,6 @@ main <span class="fu">=</span> nameLoop []</code></pre>
 </section>
 <section id="defining-types" class="slide level1 big-code small-title">
 <h1>Defining types</h1>
-</section>
-<section id="pattern-matching" class="slide level1 big-code small-title">
-<h1>Pattern matching</h1>
-</section>
-<section id="guards" class="slide level1 big-code small-title">
-<h1>Guards</h1>
-</section>
-<section id="ifthenelse" class="slide level1 big-code small-title">
-<h1>If/then/else</h1>
 </section>
     </div>
   </div>

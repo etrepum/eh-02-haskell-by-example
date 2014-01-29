@@ -283,6 +283,94 @@ False
 * For example: `showNumber 10` would evaluate to<br/>`"Your number is: 10"`
 * HINT: Use the `show` function to do this, `show 10` evaluates to `"10"`
 
+# If/then/else {.big-code .small-title}
+
+* if *predicate* then *consequent* else *alternative*
+
+```haskell
+fib x =
+  if x > 1 then fib (x - 1) + fib (x - 2) else x
+
+fib x =
+  if x > 1
+    then fib (x - 1) + fib (x - 2)
+    else x
+```
+
+# Exercise 7
+
+* Implement a function named `fac` that given a positive integer,
+  evalues to the factorial of that number.
+* In pseudocode:
+  `fac n = n * (n - 1) * (n - 2) * … * 2 * 1`
+
+# Pattern matching {.big-code .small-title}
+
+```haskell
+fib x =
+  case x of {0 -> 0; 1 -> 1; _ -> fib (x-1) + fib (x-2)}
+
+fib x = case x of
+  0 -> 0
+  1 -> 1
+  _ -> fib (x - 1) + fib (x - 2)
+  
+fib 0 = 0
+fib 1 = 1
+fib x = fib (x - 1) + fib (x - 2)
+```
+
+# Matching lists {.big-code .small-title}
+
+```haskell
+lastElem [] = error "empty list"
+lastElem (x : []) = x
+lastElem (_ : xs) = lastElem xs
+
+lastElem [] = error "empty list"
+lastElem [x] = x
+lastElem (_ : xs) = lastElem xs
+```
+
+# Exercise 8
+
+* Implement a function named `firstElem` that evaluates to the first element
+  of the given list, or `error "empty list"` if given an empty list.
+* Use only pattern matching and recursion to implement this function.
+* Example: `firstElem [1,2,3] == 1`
+
+# Exercise 9
+
+* Implement a function named `nth` that evaluates to the nth element of a
+  list (with zero based indexing), or `error "index too large"` if the list
+  is too short.
+* Use only pattern matching and recursion to implement this function.
+* Example: `nth 1 [1,2,3] == 2`
+
+# Guards {.big-code .small-title}
+
+* Guards are great syntax sugar for checking conditions
+* Can be used with case or when defining functions
+* `otherwise` is equivalent to `True`
+
+```haskell
+evens xs = case xs of
+  [] -> []
+  (x : xs') | x `rem` 2 == 0 -> x : evens xs'
+            | otherwise      -> evens xs'
+
+evens [] = []
+evens (x:xs)
+  | x `rem` 2 == 0 = x : evens xs
+  | otherwise      = evens xs
+```
+
+# Exercise 10
+
+* Using guards, implement `select` which returns the list elements
+  that match the given predicate.
+* Example: `select (>5) [2,4,6,8,10] == [6,8,10]`
+
 # Basic IO {.big-code .small-title}
 
 * Programs don't do anything without IO
@@ -367,7 +455,7 @@ main = do
   putStrLn ("You entered: " ++ name)
 ```
 
-# Recursion
+# Recursion in IO
 
 * You can press ^C (Control and C at the same time) to abort this!
 
@@ -401,12 +489,6 @@ main = nameLoop []
 # Types {.big-code .small-title}
 
 # Defining types {.big-code .small-title}
-
-# Pattern matching {.big-code .small-title}
-
-# Guards {.big-code .small-title}
-
-# If/then/else {.big-code .small-title}
 
 [Intro to Haskell]: http://www.enginehere.com/courses/intro-to-haskell-etrepum/
 [FP Haskell Center]: https://www.fpcomplete.com/page/project-build
