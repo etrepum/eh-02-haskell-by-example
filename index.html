@@ -144,7 +144,7 @@ January 2014
 </td></tr></table>
 
 </section>
-<section id="exercise-2" class="slide level1 small-title">
+<section id="exercise-2" class="slide level1 big-code small-title">
 <h1>Exercise 2</h1>
 <ul>
 <li>Convert your program from Exercise 1 to use the operators in prefix form.</li>
@@ -311,7 +311,7 @@ January 2014
 <li>There are other data types for bytes and text in the Haskell Platform that can be more efficient, but we'll start with String</li>
 </ul>
 </section>
-<section id="exercise-6" class="slide level1">
+<section id="exercise-6" class="slide level1 big-code small-title">
 <h1>Exercise 6</h1>
 <ul>
 <li>Implement a function named <code>showNumber</code> that given a number, evaluates to the string &quot;Your number is: &quot; with the given number as a string appended to it.</li>
@@ -332,7 +332,7 @@ fib x <span class="fu">=</span>
     <span class="kw">then</span> fib (x <span class="fu">-</span> <span class="dv">1</span>) <span class="fu">+</span> fib (x <span class="fu">-</span> <span class="dv">2</span>)
     <span class="kw">else</span> x</code></pre>
 </section>
-<section id="exercise-7" class="slide level1">
+<section id="exercise-7" class="slide level1 big-code small-title">
 <h1>Exercise 7</h1>
 <ul>
 <li>Implement a function named <code>fac</code> that given a positive integer, evalues to the factorial of that number.</li>
@@ -363,7 +363,7 @@ lastElem [] <span class="fu">=</span> error <span class="st">&quot;empty list&qu
 lastElem [x] <span class="fu">=</span> x
 lastElem (_ <span class="fu">:</span> xs) <span class="fu">=</span> lastElem xs</code></pre>
 </section>
-<section id="exercise-8" class="slide level1">
+<section id="exercise-8" class="slide level1 big-code small-title">
 <h1>Exercise 8</h1>
 <ul>
 <li>Implement a function named <code>firstElem</code> that evaluates to the first element of the given list, or <code>error &quot;empty list&quot;</code> if given an empty list.</li>
@@ -371,7 +371,7 @@ lastElem (_ <span class="fu">:</span> xs) <span class="fu">=</span> lastElem xs<
 <li>Example: <code>firstElem [1,2,3] == 1</code></li>
 </ul>
 </section>
-<section id="exercise-9" class="slide level1">
+<section id="exercise-9" class="slide level1 big-code small-title">
 <h1>Exercise 9</h1>
 <ul>
 <li>Implement a function named <code>nth</code> that evaluates to the nth element of a list (with zero based indexing), or <code>error &quot;index too large&quot;</code> if the list is too short.</li>
@@ -396,11 +396,74 @@ evens (x<span class="fu">:</span>xs)
   <span class="fu">|</span> x <span class="ot">`rem`</span> <span class="dv">2</span> <span class="fu">==</span> <span class="dv">0</span> <span class="fu">=</span> x <span class="fu">:</span> evens xs
   <span class="fu">|</span> otherwise      <span class="fu">=</span> evens xs</code></pre>
 </section>
-<section id="exercise-10" class="slide level1">
+<section id="exercise-10" class="slide level1 big-code small-title">
 <h1>Exercise 10</h1>
 <ul>
 <li>Using guards, implement <code>select</code> which returns the list elements that match the given predicate.</li>
 <li>Example: <code>select (&gt;5) [2,4,6,8,10] == [6,8,10]</code></li>
+</ul>
+</section>
+<section id="foldr" class="slide level1 big-code small-title">
+<h1>foldr</h1>
+<ul>
+<li><code>foldr</code> is a right fold, which can be used to implement many other functions on lists</li>
+<li>You can think of it as replacing <code>:</code> with <code>k</code> and <code>[]</code> with <code>z</code></li>
+</ul>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">
+foldr k z []     <span class="fu">=</span> z
+foldr k z (x<span class="fu">:</span>xs) <span class="fu">=</span> x <span class="ot">`k`</span> foldr k z xs</code></pre>
+</section>
+<section id="map" class="slide level1 big-code small-title">
+<h1>map</h1>
+<ul>
+<li><code>map</code> is a commonly used list function that can be expressed in terms of <code>foldr</code></li>
+<li><code>map (+1) [1,2,3,4] == [2,3,4,5]</code></li>
+</ul>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">
+map f xs <span class="fu">=</span> foldr (\x acc <span class="ot">-&gt;</span> f x <span class="fu">:</span> acc) [] xs</code></pre>
+</section>
+<section id="simplifying-map" class="slide level1 big-code small-title">
+<h1>Simplifying map</h1>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">
+map f xs <span class="fu">=</span> foldr (\x acc <span class="ot">-&gt;</span> f x <span class="fu">:</span> acc) [] xs
+
+<span class="co">-- eta-reduction, remove xs from both sides</span>
+map f <span class="fu">=</span> foldr (\x acc <span class="ot">-&gt;</span> (f x <span class="fu">:</span> acc)) []
+
+<span class="co">-- rewrite in prefix form</span>
+map f <span class="fu">=</span> foldr (\x acc <span class="ot">-&gt;</span> (<span class="fu">:</span>) (f x) acc)) []
+
+<span class="co">-- eta-reduction of inner function</span>
+map f <span class="fu">=</span> foldr (\x <span class="ot">-&gt;</span> (<span class="fu">:</span>) (f x))) []
+
+<span class="co">-- reduce inner function further with .</span>
+map f <span class="fu">=</span> foldr ((<span class="fu">:</span>) <span class="fu">.</span> f) []</code></pre>
+</section>
+<section id="going-point-free" class="slide level1 big-code small-title">
+<h1>Going point-free</h1>
+<ul>
+<li>Some people call this &quot;pointless&quot;. I agree in many cases.</li>
+</ul>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">map f <span class="fu">=</span> foldr ((<span class="fu">:</span>) <span class="fu">.</span> f) []
+
+<span class="co">-- move arguments around for easier reduction</span>
+map f <span class="fu">=</span> flip foldr [] ((<span class="fu">:</span>) <span class="fu">.</span> f)
+
+<span class="co">-- reduce further with .</span>
+map <span class="fu">=</span> flip foldr [] <span class="fu">.</span> ((<span class="fu">:</span>) <span class="fu">.</span>)
+
+<span class="co">-- rewrite flip using an infix section</span>
+map <span class="fu">=</span> (<span class="ot">`foldr`</span> []) <span class="fu">.</span> ((<span class="fu">:</span>) <span class="fu">.</span>)
+
+<span class="co">-- What does this accomplish?</span>
+<span class="co">-- Not much. Don&#39;t bother.</span>
+<span class="co">-- But you may see code like this.</span></code></pre>
+</section>
+<section id="exercise-11" class="slide level1">
+<h1>Exercise 11</h1>
+<ul>
+<li>Implement <code>select</code> from Exercise 10 using <code>foldr</code> without any explicit recursion</li>
+<li><code>select (&gt;5) [2,4,6,8,10] == [6,8,10]</code></li>
 </ul>
 </section>
 <section id="basic-io" class="slide level1 big-code small-title">

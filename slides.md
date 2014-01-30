@@ -104,7 +104,7 @@ main = print (…)
 ```
 </td></tr></table>
 
-# Exercise 2 {.small-title}
+# Exercise 2 {.big-code .small-title}
 
 * Convert your program from Exercise 1 to use the operators in prefix
   form.
@@ -275,7 +275,7 @@ False
 * There are other data types for bytes and text in the Haskell
   Platform that can be more efficient, but we'll start with String
 
-# Exercise 6
+# Exercise 6 {.big-code .small-title}
 
 * Implement a function named `showNumber` that given a number,
   evaluates to the string "Your number is: " with the given number
@@ -297,7 +297,7 @@ fib x =
     else x
 ```
 
-# Exercise 7
+# Exercise 7 {.big-code .small-title}
 
 * Implement a function named `fac` that given a positive integer,
   evalues to the factorial of that number.
@@ -332,14 +332,14 @@ lastElem [x] = x
 lastElem (_ : xs) = lastElem xs
 ```
 
-# Exercise 8
+# Exercise 8 {.big-code .small-title}
 
 * Implement a function named `firstElem` that evaluates to the first element
   of the given list, or `error "empty list"` if given an empty list.
 * Use only pattern matching and recursion to implement this function.
 * Example: `firstElem [1,2,3] == 1`
 
-# Exercise 9
+# Exercise 9 {.big-code .small-title}
 
 * Implement a function named `nth` that evaluates to the nth element of a
   list (with zero based indexing), or `error "index too large"` if the list
@@ -365,11 +365,82 @@ evens (x:xs)
   | otherwise      = evens xs
 ```
 
-# Exercise 10
+# Exercise 10 {.big-code .small-title}
 
 * Using guards, implement `select` which returns the list elements
   that match the given predicate.
 * Example: `select (>5) [2,4,6,8,10] == [6,8,10]`
+
+# foldr {.big-code .small-title}
+
+* `foldr` is a right fold, which can be used to implement many other
+  functions on lists
+* You can think of it as replacing `:` with `k` and `[]` with `z`
+
+```haskell
+
+foldr k z []     = z
+foldr k z (x:xs) = x `k` foldr k z xs
+```
+
+# map {.big-code .small-title}
+
+* `map` is a commonly used list function that can be expressed
+  in terms of `foldr`
+* `map (+1) [1,2,3,4] == [2,3,4,5]`
+
+```haskell
+
+map f xs = foldr (\x acc -> f x : acc) [] xs
+```
+
+# Simplifying map {.big-code .small-title}
+
+```haskell
+
+map f xs = foldr (\x acc -> f x : acc) [] xs
+
+-- eta-reduction, remove xs from both sides
+map f = foldr (\x acc -> (f x : acc)) []
+
+-- rewrite in prefix form
+map f = foldr (\x acc -> (:) (f x) acc)) []
+
+-- eta-reduction of inner function
+map f = foldr (\x -> (:) (f x))) []
+
+-- reduce inner function further with .
+map f = foldr ((:) . f) []
+```
+
+# Going point-free {.big-code .small-title}
+
+* Some people call this "pointless". I agree in many cases.
+
+```haskell
+map f = foldr ((:) . f) []
+
+-- move arguments around for easier reduction
+map f = flip foldr [] ((:) . f)
+
+-- reduce further with .
+map = flip foldr [] . ((:) .)
+
+-- rewrite flip using an infix section
+map = (`foldr` []) . ((:) .)
+
+-- What does this accomplish?
+-- Not much. Don't bother.
+-- But you may see code like this.
+```
+
+
+# Exercise 11
+
+* Implement `select` from Exercise 10 using `foldr` without any
+  explicit recursion
+* `select (>5) [2,4,6,8,10] == [6,8,10]`
+
 
 # Basic IO {.big-code .small-title}
 
